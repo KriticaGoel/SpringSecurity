@@ -16,7 +16,10 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((requests) -> requests.anyRequest().authenticated());
-       // http.formLogin(withDefaults());
+        //Diable cookies to prevent session fixation attacks
+        http.sessionManagement((session)
+               -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        // http.formLogin(withDefaults());
         http.httpBasic(withDefaults());
         return http.build();
     }
