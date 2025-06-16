@@ -21,6 +21,7 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+        //this bypass the url from authentication
         http.authorizeHttpRequests((requests) ->
                 requests.requestMatchers("/kritica/**").permitAll()
                         .anyRequest().authenticated());
